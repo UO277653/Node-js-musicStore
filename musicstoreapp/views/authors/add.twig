@@ -19,11 +19,9 @@
         <label class="control-label col-sm-2" for="role">Rol:</label>
         <div class="col-sm-10">
             <select class="form-control" id="role" name="role" required>
-                <option value="singer">Cantante</option>
-                <option value="drummer">Batería</option>
-                <option value="guitarist">Guitarrista</option>
-                <option value="bass">Bajista</option>
-                <option value="keyboard">Teclista</option>
+                {% for rol in roles %}
+                    <option value={{rol}}>{{ rol }}</option>
+                {% endfor %}
             </select>
         </div>
     </div>
