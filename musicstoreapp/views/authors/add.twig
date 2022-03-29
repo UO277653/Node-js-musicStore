@@ -1,0 +1,36 @@
+{% extends "layout.twig" %}
+{% block title %} Agregar autor {% endblock %}
+{% block main_container %}
+<h2>Agregar autor</h2>
+<form class="form-horizontal" method="post" action="/authors/add">
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="name">Name:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="name" name="name" placeholder="Nombre del autor"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="authorGroup">Group:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="authorGroup" name="authorGroup" placeholder="Nombre del grupo"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="role">Rol:</label>
+        <div class="col-sm-10">
+            <select class="form-control" id="role" name="role" required>
+                <option value="singer">Cantante</option>
+                <option value="drummer">Batería</option>
+                <option value="guitarist">Guitarrista</option>
+                <option value="bass">Bajista</option>
+                <option value="keyboard">Teclista</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-primary">Agregar</button>
+        </div>
+    </div>
+</form>
+{% endblock %}
