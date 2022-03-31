@@ -8,7 +8,7 @@
             {% for author in authors %}
                 <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3">
                     <div style="width:200px">
-                        <a href="/authors/id">
+                        <a href="/authors/{{ author.name }}">
                             <img src="/images/song1.png" alt="logo"/>
                             <!-- http://www.socicon.com/generator.php -->
                             <div>{{ author.name }} </div>
