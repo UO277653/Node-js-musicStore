@@ -27,10 +27,17 @@ module.exports = function (app, songsRepository) {
     });
 
     app.post('/songs/add', function (req, res) {
+
+        if ( req.session.user == null){
+            res.redirect("/shop");
+            return;
+        }
+
         let song = {
             title: req.body.title,
             kind: req.body.kind,
-            price: req.body.price
+            price: req.body.price,
+            author: req.session.user
         }
 
         songsRepository.insertSong(song, function (songId){
@@ -63,6 +70,12 @@ module.exports = function (app, songsRepository) {
     });
 
     app.get('/songs/add', function (req, res) {
+
+        if ( req.session.user == null){
+            res.redirect("/shop");
+            return;
+        }
+
         res.render("songs/add.twig");
     });
 
