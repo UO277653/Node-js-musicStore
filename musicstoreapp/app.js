@@ -46,8 +46,11 @@ const url = 'mongodb+srv://admin:sdi@tiendamusica.m5jww.mongodb.net/tiendamusica
 app.set('connectionStrings', url);
 let songsRepository = require("./repositories/songsRepository.js");
 songsRepository.init(app, MongoClient);
-require("./routes/songs.js")(app, songsRepository);
+let commentsRepository = require("./repositories/commentsRepository.js");
+commentsRepository.init(app, MongoClient);
+require("./routes/songs.js")(app, songsRepository, commentsRepository);
 require("./routes/authors.js")(app);
+require("./routes/comments.js")(app, commentsRepository);
 
 
 // view engine setup

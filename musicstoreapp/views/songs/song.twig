@@ -17,6 +17,33 @@
 		  </div>
 		</div>
 	  </div>
+
+	<h1> Comentarios </h1>
+		<tr>
+			<th>Autor</th>
+			<th>Texto</th>
+			<th class="col-md-1"></th>
+		</tr>
+	<div>
+	{% for comment in comments %}
+		<tr>
+			<td>{{ comment.author }}</td>
+			<td>{{ comment.text }}</td>
+			<br>
+		</tr>
+	{% endfor %}
+	</div>
+
+	<h2>Agregar comentario</h2>
+	<form class="form-horizontal" method="post" action="/comments/{{ song._id }}">
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="text">Texto:</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="text" name="text" placeholder="Comentario"
+					   required/>
+			</div>
+		</div>
+	</form>
 	  
 	 <!-- -->
 	 <div class="row" style="margin-top: 20px;" >
@@ -54,4 +81,5 @@
 			  </div>
 		  </div>
 	  </div>
+
 {% endblock %}
