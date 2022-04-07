@@ -13,6 +13,11 @@ app.use(expressSession({
 }));
 
 const userSessionRouter = require('./routes/userSessionRouter');
+
+const userAuthorRouter = require('./routes/userAuthorRouter');
+app.use("/songs/edit",userAuthorRouter);
+app.use("/songs/delete",userAuthorRouter);
+
 const userAudiosRouter = require('./routes/userAudiosRouter');
 app.use("/songs/add",userSessionRouter);
 app.use("/publications",userSessionRouter);
@@ -62,6 +67,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// app.use("comments/add"...)
 
 app.use('/', indexRouter);
 

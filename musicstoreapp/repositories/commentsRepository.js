@@ -4,7 +4,7 @@ module.exports = {
     init: function (app, mongoClient) {
         this. mongoClient= mongoClient;
         this.app = app;
-    }, insertComment: async function (comment) {
+    }, insertComment: async function (comment) { // Similar al insertar canciones
             try {
                 const client = await this.mongoClient.connect(this.app.get('connectionStrings'));
                 const database = client.db("musicStore");
@@ -27,4 +27,6 @@ module.exports = {
             throw (error);
         }
     }
+
+    // findComment
 };
