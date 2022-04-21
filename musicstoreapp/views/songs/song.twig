@@ -20,7 +20,7 @@
 			  {% endif %}
 
 			  {% if song.author != user and not bought %}
-				  <a class="btn btn-primary pull-right" href="/songs/buy/{{ song._id }}">{{ song.price }} €</a>
+				  <a class="btn btn-primary pull-right" href="/songs/buy/{{ song._id }}">{{ song.price }} € - {{ song.usd }} $</a>
 			  {% endif %}
 		  </div>
 		</div>
