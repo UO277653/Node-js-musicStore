@@ -5,6 +5,13 @@ let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 let app = express();
 
+let bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+let jwt = require('jsonwebtoken');
+app.set('jwt', jwt);
+
 let expressSession = require('express-session');
 app.use(expressSession({
   secret: 'abcdefg',
@@ -17,6 +24,9 @@ const userSessionRouter = require('./routes/userSessionRouter');
 const userAuthorRouter = require('./routes/userAuthorRouter');
 app.use("/songs/edit",userAuthorRouter);
 app.use("/songs/delete",userAuthorRouter);
+
+const userTokenRouter = require('./routes/userTokenRouter');
+app.use("/api/v1.0/songs/", userTokenRouter);
 
 const userAudiosRouter = require('./routes/userAudiosRouter');
 app.use("/songs/add",userSessionRouter);
@@ -37,9 +47,7 @@ app.set('uploadPath', __dirname);
 app.set('clave','abcdefg');
 app.set('crypto',crypto);
 
-let bodyParser = require('body-parser');
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+
 
 const { MongoClient } = require("mongodb");
 
@@ -57,7 +65,7 @@ let commentsRepository = require("./repositories/commentsRepository.js");
 commentsRepository.init(app, MongoClient);
 require("./routes/songs.js")(app, songsRepository, commentsRepository);
 
-require("./routes/api/songsAPIv1.0.js")(app, songsRepository);
+require("./routes/api/songsAPIv1.0.js")(app, songsRepository, usersRepository);
 
 require("./routes/authors.js")(app);
 require("./routes/comments.js")(app, commentsRepository);
